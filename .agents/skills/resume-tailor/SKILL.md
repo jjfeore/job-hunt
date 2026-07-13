@@ -26,7 +26,9 @@ All mutable data lives in the user's workspace, never inside the plugin director
 2. If the workspace directory is missing, create it: copy every file from the plugin's
    `templates/` directory into it, dropping `.template` from each filename
    (`search-criteria.template.md` → `search-criteria.md`, `tracker.template.csv` →
-   `tracker.csv`). The plugin root is the directory containing this `skills/` folder.
+   `tracker.csv`). The plugin root is the directory containing this `skills/` folder;
+   if no `templates/` exists there (e.g. this skill was loaded from a mirror such as
+   `.agents/skills/`), use the nearest ancestor directory that contains `templates/`.
 3. Workspace contents: `search-criteria.md`, `profile.md`, `bullet-bank.md`,
    `resume-template.md`, `tracker.csv`, plus `shortlists/` and `applications/`
    directories created as needed. Never write inside the plugin directory at runtime.

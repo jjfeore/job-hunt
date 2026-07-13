@@ -6,8 +6,10 @@ under skills/. Git symlinks don't survive checkout reliably on Windows, so
 this repo commits a plain-directory mirror instead. Run this after editing
 anything under skills/:
 
-    python scripts/sync_codex_skills.py          # rewrite the mirror
-    python scripts/sync_codex_skills.py --check  # exit 1 if out of sync
+    python3 scripts/sync_codex_skills.py          # rewrite the mirror
+    python3 scripts/sync_codex_skills.py --check  # exit 1 if out of sync
+
+On Windows, use the launcher: py scripts/sync_codex_skills.py
 
 Stdlib only; works on Windows, macOS, and Linux.
 """
@@ -53,7 +55,7 @@ def main() -> int:
             return 0
         print(
             ".agents/skills is OUT OF SYNC with skills/ — run "
-            "`python scripts/sync_codex_skills.py`",
+            "`python3 scripts/sync_codex_skills.py` (Windows: `py ...`)",
             file=sys.stderr,
         )
         return 1

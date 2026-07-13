@@ -11,7 +11,7 @@ criteria, work history, applications — lives in a private workspace on your ma
 
 ## How it works
 
-Four stages, four skills:
+Four stages — three driven by skills, one owned by you:
 
 1. **`job-search`** — reads your saved criteria, scans login-free sources (Greenhouse,
    Lever, and Ashby job boards, company careers pages, web search), dedupes against your
@@ -26,8 +26,8 @@ Four stages, four skills:
    the tailored resume, answers standard screeners — then **stops at the completed form**
    and hands you a field-by-field summary. You review; you click submit.
 
-A fifth skill, **`setup`**, is the guided interview that builds your configuration in the
-first place.
+The fourth skill, **`setup`**, is the guided interview that builds your configuration in
+the first place.
 
 ## The safety model
 
@@ -43,33 +43,45 @@ first place.
 
 ### Claude Code
 
+Try it for a single session (loads straight from the clone):
+
 ```
-git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO: real URL once published
-claude plugin add ./job-hunt
+git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO(James): replace with the real published URL
+claude --plugin-dir ./job-hunt
 ```
 
-`claude plugin add <path-or-git-url>` installs a plugin from a local directory or git
-URL; while developing, `claude --plugin-dir ./job-hunt` loads it for a single session
-without installing. (If your CLI version lacks these commands, check
-`claude plugin --help` — the plugin format itself is just this directory.)
+For a persistent install, clone into your personal skills directory instead — any
+folder under `~/.claude/skills/` containing `.claude-plugin/plugin.json` loads
+automatically as `job-hunt@skills-dir` from the next session on, no install step:
+
+```bash
+# macOS / Linux
+git clone https://github.com/YOUR_GITHUB/job-hunt "$HOME/.claude/skills/job-hunt"
+```
+
+```powershell
+# Windows (PowerShell)
+git clone https://github.com/YOUR_GITHUB/job-hunt "$env:USERPROFILE\.claude\skills\job-hunt"
+```
 
 Then say: *"set up job-hunt"*.
 
 ### Claude Cowork
 
 Cowork installs plugins as `.plugin` files (which are plain zip archives of this repo).
-Package one:
+Package one from the repo root — `git archive` works identically on Windows, macOS, and
+Linux and automatically excludes `.git/` and untracked files (commit changes first):
 
 ```powershell
-# Windows (PowerShell), from the repo root
+# Windows (PowerShell)
 New-Item -ItemType Directory -Force dist | Out-Null
-$items = Get-ChildItem -Force | Where-Object { $_.Name -notin '.git','dist' }
-Compress-Archive -Path $items.FullName -DestinationPath dist\job-hunt.plugin -Force
+git archive --format=zip -o dist/job-hunt.plugin HEAD
 ```
 
 ```bash
-# macOS / Linux, from the repo root
-mkdir -p dist && zip -r dist/job-hunt.plugin . -x ".git/*" ".git" "dist/*" "dist"
+# macOS / Linux
+mkdir -p dist
+git archive --format=zip -o dist/job-hunt.plugin HEAD
 ```
 
 Upload `dist/job-hunt.plugin` in Cowork's plugin settings, then say *"set up job-hunt"*.
@@ -85,17 +97,20 @@ Codex discovers repo skills under `.agents/skills`, and this repo ships a commit
 mirror of its skills there — so cloning is enough:
 
 ```
-git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO: real URL once published
-cd job-hunt && codex
+git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO(James): replace with the real published URL
+cd job-hunt
+codex
 ```
 
 Codex also reads the repo-root `AGENTS.md` as project guidance automatically. To make
 the skills available in *every* directory (not just this repo), copy the contents of
-`skills/` into `~/.agents/skills/`.
+`skills/` into `~/.agents/skills/` **and** the `templates/` folder to
+`~/.agents/templates/` — the skills bootstrap your workspace from a `templates/`
+directory near their skills folder, so it must come along.
 
 > **Contributors:** the canonical skills live in `skills/`; `.agents/skills` is a
 > generated mirror. After editing any skill, run
-> `python scripts/sync_codex_skills.py` (Windows: `py scripts/sync_codex_skills.py`).
+> `python3 scripts/sync_codex_skills.py` (Windows: `py scripts/sync_codex_skills.py`).
 
 ## Configuration
 
@@ -179,4 +194,5 @@ exist to keep the human accountable for anything a human should be accountable f
 
 ## License
 
+<!-- TODO(James): confirm MIT as the final license choice -->
 MIT — see [LICENSE](LICENSE).

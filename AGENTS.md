@@ -1,7 +1,8 @@
 # job-hunt — agent guidance
 
-This repo is the `job-hunt` plugin: a job-application pipeline delivered as four
-portable skills (search → shortlist → tailor → apply) plus a setup interview. The
+This repo is the `job-hunt` plugin: a job-application pipeline (search → human
+shortlist review → tailor → apply) delivered as four portable skills — `setup`,
+`job-search`, `resume-tailor`, and `job-apply`. The
 plugin directory is generic and read-only at runtime; every user's personal data lives
 in an external workspace. This file is loaded as project context by agent runtimes
 (Codex reads it natively); the rules below bind even when no skill is loaded.
@@ -46,9 +47,11 @@ hold platform playbooks and search recipes.
 
 - Skills are auto-discovered from the committed mirror at `.agents/skills/`. The
   canonical source is `skills/` — edit there, then regenerate the mirror with
-  `python scripts/sync_codex_skills.py` (Windows: `py scripts/sync_codex_skills.py`).
+  `python3 scripts/sync_codex_skills.py` (Windows: `py scripts/sync_codex_skills.py`).
   CI-style check: add `--check`.
-- For user-level (all-repos) availability, copy `skills/*` into `~/.agents/skills/`.
+- For user-level (all-repos) availability, copy `skills/*` into `~/.agents/skills/`
+  and `templates/` to `~/.agents/templates/` — the skills bootstrap the workspace from
+  a `templates/` directory near their skills folder.
 
 ## For contributors
 
