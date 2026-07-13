@@ -1,0 +1,25 @@
+# Personal data must never enter this repo.
+# The real workspace lives OUTSIDE the repo (~/job-hunt-data or JOB_HUNT_HOME),
+# but guard against an accidental copy landing here.
+job-hunt-data/
+linkedin-export.pdf
+
+# Local-only files of any kind
+*.local.*
+
+# Build output
+dist/
+
+# OS junk
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editor junk
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
