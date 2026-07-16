@@ -1,7 +1,7 @@
 {
   "name": "job-hunt",
   "version": "0.1.0",
-  "description": "Privacy-first job application pipeline: scheduled job search, human-reviewed shortlists, no-fabrication resume tailoring, and browser-driven applications that always stop before submit.",
+  "description": "Automated job application pipeline: scheduled job search, human-reviewed shortlists, no-fabrication resume tailoring, and browser-driven applications that always stop before submit.",
   "author": {
     "name": "James Feore"
   }
