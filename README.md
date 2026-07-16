@@ -46,7 +46,7 @@ the first place.
 Try it for a single session (loads straight from the clone):
 
 ```
-git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO(James): replace with the real published URL
+git clone https://github.com/jjfeore/job-hunt
 claude --plugin-dir ./job-hunt
 ```
 
@@ -56,12 +56,12 @@ automatically as `job-hunt@skills-dir` from the next session on, no install step
 
 ```bash
 # macOS / Linux
-git clone https://github.com/YOUR_GITHUB/job-hunt "$HOME/.claude/skills/job-hunt"
+git clone https://github.com/jjfeore/job-hunt "$HOME/.claude/skills/job-hunt"
 ```
 
 ```powershell
 # Windows (PowerShell)
-git clone https://github.com/YOUR_GITHUB/job-hunt "$env:USERPROFILE\.claude\skills\job-hunt"
+git clone https://github.com/jjfeore/job-hunt
 ```
 
 Then say: *"set up job-hunt"*.
@@ -194,5 +194,4 @@ exist to keep the human accountable for anything a human should be accountable f
 
 ## License
 
-<!-- TODO(James): confirm MIT as the final license choice -->
 MIT — see [LICENSE](LICENSE).
