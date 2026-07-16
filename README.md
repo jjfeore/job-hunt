@@ -78,13 +78,27 @@ git clone https://github.com/jjfeore/job-hunt "$HOME/.claude/skills/job-hunt"
 git clone https://github.com/jjfeore/job-hunt "$env:USERPROFILE\.claude\skills\job-hunt"
 ```
 
+Claude Code can also install it as a marketplace plugin (this repo doubles as one):
+
+```
+claude plugin marketplace add jjfeore/job-hunt
+claude plugin install job-hunt@job-hunt
+```
+
 Then say: *"set up job-hunt"*.
 
 ### Claude Cowork
 
-Cowork installs plugins as `.plugin` files (which are plain zip archives of this repo).
-Package one from the repo root — `git archive` works identically on Windows, macOS, and
-Linux and automatically excludes `.git/` and untracked files (commit changes first):
+Download `job-hunt.plugin` from the
+[releases page](https://github.com/jjfeore/job-hunt/releases), then upload it in
+Cowork: **Cowork tab → Customize → Plugins → upload a custom plugin**. Every tagged
+release attaches a freshly packaged `.plugin` automatically. (Organization admins can
+instead sync this repo directly as a plugin marketplace — it ships
+`.claude-plugin/marketplace.json`.)
+
+To package one yourself instead, run this from a repo clone — `git archive` works
+identically on Windows, macOS, and Linux and automatically excludes `.git/` and
+untracked files (commit changes first):
 
 ```powershell
 # Windows (PowerShell)

@@ -1,0 +1,32 @@
+name: Release plugin
+
+# Tag a version (e.g. `git tag v0.1.0 && git push --tags`) and this workflow
+# packages the repo into job-hunt.plugin and attaches it to a GitHub Release,
+# so Cowork users download a ready-made file instead of building one.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify Codex mirror is in sync
+        run: python3 scripts/sync_codex_skills.py --check
+
+      - name: Package .plugin
+        run: |
+          mkdir -p dist
+          git archive --format=zip -o dist/job-hunt.plugin HEAD
+
+      - name: Create release and attach plugin
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/job-hunt.plugin
+          generate_release_notes: true

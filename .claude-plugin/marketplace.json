@@ -1,0 +1,13 @@
+{
+  "name": "job-hunt",
+  "owner": {
+    "name": "James Feore"
+  },
+  "plugins": [
+    {
+      "name": "job-hunt",
+      "source": "./",
+      "description": "Privacy-first job application pipeline: scheduled job search, human-reviewed shortlists, no-fabrication resume tailoring, and browser-driven applications that always stop before submit."
+    }
+  ]
+}
