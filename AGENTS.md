@@ -23,8 +23,9 @@ hold platform playbooks and search recipes.
 
 - Workspace path: the `JOB_HUNT_HOME` environment variable if set, otherwise
   `~/job-hunt-data/` (`%USERPROFILE%\job-hunt-data` on Windows).
-- If the workspace is missing, create it by copying `templates/*` into it, dropping
-  `.template` from filenames; then direct the user to the `setup` skill.
+- If the workspace is missing, create it by copying the `setup` skill's bundled
+  templates (`skills/setup/templates/*`) into it, dropping `.template` from filenames;
+  then direct the user to the `setup` skill.
 - Workspace contents: `search-criteria.md`, `profile.md`, `bullet-bank.md`,
   `resume-template.md`, `tracker.csv`, plus `shortlists/` and `applications/` created
   as needed.
@@ -50,8 +51,8 @@ hold platform playbooks and search recipes.
   `python3 scripts/sync_codex_skills.py` (Windows: `py scripts/sync_codex_skills.py`).
   CI-style check: add `--check`.
 - For user-level (all-repos) availability, copy `skills/*` into `~/.agents/skills/`
-  and `templates/` to `~/.agents/templates/` — the skills bootstrap the workspace from
-  a `templates/` directory near their skills folder.
+  (or `npx skills@latest add jjfeore/job-hunt -g`) — the workspace templates ship
+  inside the `setup` skill, so they travel with any skill-level install.
 
 ## For contributors
 

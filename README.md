@@ -41,6 +41,20 @@ the first place.
 
 ## Quickstart
 
+### Any agent, via the skills CLI (recommended)
+
+The four skills follow the open `SKILL.md` convention, so the community
+[skills CLI](https://skills.sh) installs them into Claude Code, Codex, Cursor, and
+dozens of other agents in one step:
+
+```
+npx skills@latest add jjfeore/job-hunt
+```
+
+When it asks which skills to install, take all four — `setup` carries the workspace
+templates the others bootstrap from. Add `-g` to install globally (all projects)
+instead of into the current project. Then say: *"set up job-hunt"*.
+
 ### Claude Code
 
 Try it for a single session (loads straight from the clone):
@@ -61,7 +75,7 @@ git clone https://github.com/jjfeore/job-hunt "$HOME/.claude/skills/job-hunt"
 
 ```powershell
 # Windows (PowerShell)
-git clone https://github.com/jjfeore/job-hunt
+git clone https://github.com/jjfeore/job-hunt "$env:USERPROFILE\.claude\skills\job-hunt"
 ```
 
 Then say: *"set up job-hunt"*.
@@ -97,16 +111,15 @@ Codex discovers repo skills under `.agents/skills`, and this repo ships a commit
 mirror of its skills there — so cloning is enough:
 
 ```
-git clone https://github.com/YOUR_GITHUB/job-hunt   # TODO(James): replace with the real published URL
+git clone https://github.com/jjfeore/job-hunt
 cd job-hunt
 codex
 ```
 
 Codex also reads the repo-root `AGENTS.md` as project guidance automatically. To make
 the skills available in *every* directory (not just this repo), copy the contents of
-`skills/` into `~/.agents/skills/` **and** the `templates/` folder to
-`~/.agents/templates/` — the skills bootstrap your workspace from a `templates/`
-directory near their skills folder, so it must come along.
+`skills/` into `~/.agents/skills/` (or use the skills CLI with `-g`) — the workspace
+templates travel inside the `setup` skill, so nothing else needs copying.
 
 > **Contributors:** the canonical skills live in `skills/`; `.agents/skills` is a
 > generated mirror. After editing any skill, run
